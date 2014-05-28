@@ -39,7 +39,7 @@ function debug(str) {
 function loadData(id) {
 	$.ajax({
 		type: 'GET',
-		url: 'xml/tree' + id + '.xml',
+		url: 'data/data.xml',
 		dataType: 'xml',
 		success: function(xml){
 			buildNodes(xml, id );
