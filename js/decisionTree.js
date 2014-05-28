@@ -85,46 +85,50 @@ function buildNodes(xmlData, id) {
     }
 
     //New code to show description and disclaimer
-    $('.app-title, title').text($(xmlData).find('title').text());
-	$('#tree-slider').append('<div class="info-wrapper"><span class="lead">' + $(xmlData).find('description').text() + '</span></div>' );
-    $('.info-wrapper').width($('#tree-window').outerWidth() - 100);
+    $('.app-title, title, .navbar-brand').text($(xmlData).find('title').text());
+	$('.panel-body').html($(xmlData).find('description').text() );
+    //$('.info-wrapper').width($('#tree-window').outerWidth() - 100);
     var existingUser;
-    if (typeof $.cookie('idt-user') !== 'undefined'){ //this "user" has has done a tree before
-        existingUser = $.cookie('idt-user');
-    } else {
-        existingUser = '';
-    }
+    //if (typeof $.cookie('idt-user') !== 'undefined'){ //this "user" has has done a tree before
+    //    existingUser = $.cookie('idt-user');
+    //} else {
+    //    existingUser = '';
+    //}
 
     if ($(xmlData).find('disclaimer').length){
-        $('.info-wrapper').append('<br /><br /><button type="button" class="btn btn-warning show-disclaimer">Please Read the Disclaimer</button>');
+        $('.panel-footer').html('<button type="button" class="btn btn-info show-disclaimer">Please Read the Disclaimer</button>');
 
         $('#tree-window .show-disclaimer').on('click', function (event) {
             event.preventDefault();
-            $('.info-wrapper').html('<span class="lead">' + $(xmlData).find('disclaimer').text() + '</span>' )
-            .append( '<div class="checkbox"> <label> <input type="checkbox" id="agree"> I agree.</label> </div>');
-            $('#tree-window #agree').on('change', function (event) {
-                $('.info-wrapper').remove();
-                $.post('private/backend.php', {'action': 'log', 'existing_user': existingUser, 'tree_id': id}, function(data) {
-                    var resp = $.parseJSON(data);
-                    $.cookie('idt-user',resp.userid,{ expires: 365 });
-                    $.cookie('idt-sess-id',resp.sessid);
-                    showBranch(1);
-                    $('.reset-container').show();
-                });
+            $('.panel-body').html($(xmlData).find('disclaimer').text());
+            $('.panel-footer').html('<div class="checkbox"> <label> <input type="checkbox" id="agree"> I agree.</label> </div>');
+            $('#agree').on('change', function (event) {
+                //$('.info-wrapper').remove();
+                //$.post('private/backend.php', {'action': 'log', 'existing_user': existingUser, 'tree_id': id}, function(data) {
+                //    var resp = $.parseJSON(data);
+                //    $.cookie('idt-user',resp.userid,{ expires: 365 });
+                //    $.cookie('idt-sess-id',resp.sessid);
+                //    showBranch(1);
+                //    $('.reset-container').show();
+                //});
+                $('.panel-heading').hide();
+                showBranch(1);
             });
         });
     } else {
-        $('.info-wrapper').append('<br /><br /><button type="button" class="btn btn-primary begin-tree">Begin</button>');
+        $('.panel-footer').html('<button type="button" class="btn btn-info begin-tree">Begin</button>');
         $('#tree-window .begin-tree').on('click', function (event) {
             event.preventDefault();
-            $('.info-wrapper').remove();
-            $.post('private/backend.php', {'action':'log','existing_user':existingUser, 'tree_id': id}, function(data) {
-                var resp = $.parseJSON(data);
-                $.cookie('idt-user',resp.userid,{ expires: 365 });
-                $.cookie('idt-sess-id',resp.sessid);
-                showBranch(1);
-                $('.reset-container').show();
-            });
+            //$('.info-wrapper').remove();
+            //$.post('private/backend.php', {'action':'log','existing_user':existingUser, 'tree_id': id}, function(data) {
+            //    var resp = $.parseJSON(data);
+            //    $.cookie('idt-user',resp.userid,{ expires: 365 });
+            //    $.cookie('idt-sess-id',resp.sessid);
+            //    showBranch(1);
+            //    $('.reset-container').show();
+            //});
+            $('.panel-heading').hide();
+            showBranch(1);
         });
     }
 }
@@ -137,10 +141,10 @@ function resetActionLinks(){
 		if( !$(this).attr('href') ){
             //JM track here
 			showBranch( $(this).attr('id') );
-            $.post('private/backend.php', {'action': 'progress', 'session_id': $.cookie('idt-sess-id'),'last_link': $(this).attr('id')},
-            function (data){
+            //$.post('private/backend.php', {'action': 'progress', 'session_id': $.cookie('idt-sess-id'),'last_link': $(this).attr('id')},
+            //function (data){
 
-            });
+            //});
 		}
 	});
 	$('a.back-link').click( function(){
@@ -166,24 +170,29 @@ function showBranch( id ){
 		if( forkContent.indexOf('http://') == 0 || forkContent.indexOf('https://') == 0 ){
 			link = 'href="' + forkContent + '"';
 		}
-		decisionLinksHTML += '<a ' + link + ' id="' + currentBranch.forkIDs[d] + '">' + currentBranch.forkLabels[d] + '</a>';
+        if (d === 1){
+            decisionLinksHTML += '<a class="btn btn-default pull-right"  ' + link + ' id="' + currentBranch.forkIDs[d] + '">' + currentBranch.forkLabels[d] + '</a>';
+        } else {
+            decisionLinksHTML += '<a class="btn btn-default"  ' + link + ' id="' + currentBranch.forkIDs[d] + '">' + currentBranch.forkLabels[d] + '</a>';
+        }
 	}
 	decisionLinksHTML += '</div>';
     //insert referral link here
     var scanTxt;
     scanTxt = currentBranch.content.replace('{{','<a class="referral-link" href="#" onClick="generateReferral(false, false);return false;">').replace('}}','</a>');
-	var branchHTML = '<div id="branch-' + currentBranch.id + '" class="tree-content-box"><div class="content">' + scanTxt + '</div>' + decisionLinksHTML;
+	var branchHTML = '<div id="branch-' + currentBranch.id + '" class="tree-content-box"><div class="content">' + scanTxt + '</div>';
 	if( currentBranch.id !== 1 ){
 		branchHTML += '<a class="back-link">&laquo; Back</a>';
 	}
 	branchHTML += '</div>';
-	$('#tree-slider').append( branchHTML );
+	$('.panel-body').html( branchHTML );
+    $('.panel-footer').html(decisionLinksHTML);
 	resetActionLinks();
-	if(currentBranch.id != 1 ){
-		$('#tree-window').scrollTo( '+=' + windowWidth + 'px', { axis:'x', duration:slideTime, easing:'easeInOutExpo' } );
-	}
+	//if(currentBranch.id != 1 ){
+	//	$('#tree-window').scrollTo( '+=' + windowWidth + 'px', { axis:'x', duration:slideTime, easing:'easeInOutExpo' } );
+	//}
 	// add last-child class for IE
-	$('.decision-links a:last').addClass( 'last-child' );
+	//$('.decision-links a:last').addClass( 'last-child' );
 }
 
 function areCookiesEnabled() {
