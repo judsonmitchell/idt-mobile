@@ -1,16 +1,19 @@
+// Modification of original decisionTree.js for mobile
+
+
 var treeData, windowWidth, sliderWidth, slideTime, branches ;
 
 $(document).ready(function (){
 
-    //Get rid of any previous sessions
-    if (typeof $.cookie('idt-sess-id') !== 'undefined'){
-        $.removeCookie('idt-sess-id');
-    }
+    //Get rid of any previous sessions -THIS NEEDS TO BE LOCALSTORAGE instead
+    //if (typeof $.cookie('idt-sess-id') !== 'undefined'){
+    //    $.removeCookie('idt-sess-id');
+    //}
 
-    if (!areCookiesEnabled()){
-        $('.container').html('<h3><span class="label label-danger">Sorry!</span> You must have cookies enabled to use this service. ' +
-        'Please enable cookies and try again.</h3>');
-    }
+    //if (!areCookiesEnabled()){
+    //    $('.container').html('<h3><span class="label label-danger">Sorry!</span> You must have cookies enabled to use this service. ' +
+    //    'Please enable cookies and try again.</h3>');
+    //}
 
     windowWidth = $('#tree-window').show().outerWidth(false);
     sliderWidth = 0;
