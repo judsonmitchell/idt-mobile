@@ -33,14 +33,33 @@
         <script>(function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(d.href.indexOf("http")||~d.href.indexOf(e.host))&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone")</script>
         -->
 
-        <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
     </head>
     <body>
 
         <!-- Add your site or application content here -->
+    <div class="container">
 
+        <div class="row">
+            <div class="page-header">
+                <img class="img-responsive" src="img/organization-logo.png">
+            </div>
+        </div>
+
+           <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Louisiana Expungement Application</h3>
+                </div>
+                <div class="panel-body">
+                    This app will help you determine whether or not you can get your criminal conviction expunged under Louisiana law. If you are likely eligible for an expungement, you will find resources for pro bono and private attorneys who can assist you.
+                </div>
+                <div class="panel-footer">
+                    <button class="btn btn-info">Please Read the Disclaimer</button>
+                </div>
+            </div>
+    </div>
         <script src="js/vendor/zepto.min.js"></script>
         <script src="js/helper.js"></script>
 
