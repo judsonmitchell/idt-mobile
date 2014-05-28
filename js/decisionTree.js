@@ -93,7 +93,7 @@ function buildNodes(xmlData, id) {
         $('#tree-window .show-disclaimer').on('click', function (event) {
             event.preventDefault();
             $('.panel-body').html($(xmlData).find('disclaimer').text());
-            $('.panel-footer').html('<div class="checkbox"> <label> <input type="checkbox" id="agree"> I agree.</label> </div>');
+            $('.panel-footer').html('<div class="checkbox"> <label> <input type="checkbox" id="agree"> <strong>I agree.</strong></label> </div>');
             $('#agree').on('change', function (event) {
                 $.post(backendUrl + 'private/backend.php', {'action': 'log', 'existing_user': existingUser, 'tree_id': treeId}, function(data) {
                     var resp = $.parseJSON(data);
@@ -112,8 +112,8 @@ function buildNodes(xmlData, id) {
             event.preventDefault();
             $.post(backendUrl + 'private/backend.php', {'action':'log','existing_user':existingUser, 'tree_id': id}, function(data) {
                 var resp = $.parseJSON(data);
-                $.cookie('idt-user',resp.userid,{ expires: 365 });
-                $.cookie('idt-sess-id',resp.sessid);
+                window.localStorage.setItem('idt-user', resp.userid);
+                window.localStorage.setItem('idt-sess-id', resp.sessid);
                 showBranch(1);
                 //$('.reset-container').show();
             });
@@ -129,26 +129,21 @@ function resetActionLinks(){
 
 	$('.decision-links .btn').click(function(e){
 		if( !$(this).attr('href') ){
-            //Set this question id so for the back-button
-            window.localStorage.setItem('idt-last-page',$('.panel-body').attr('data-branch'));
-
             //JM track here
 			showBranch( $(this).attr('id') );
             $.post(backendUrl + 'private/backend.php', {'action': 'progress', 'session_id': window.localStorage.getItem('idt-sess-id'),'last_link': $(this).attr('id')});
 		}
 	});
 	$('a.back-link').click(function(){
-        showBranch(window.localStorage.getItem('idt-last-page'));
-		//$('#tree-window').scrollTo( '-=' + windowWidth + 'px', { axis:'x', duration:slideTime, easing:'easeInOutExpo' } );
-		//$(this).parent().fadeOut( slideTime, function(){
-		//	$(this).remove();
-		//});
+        //Go to previous item in xml tree
+        var lastQ = $('.panel-body').attr('data-branch').slice(0,-2);
+        showBranch(lastQ);
 	});
 }
 
 function showBranch(id){
     var currentBranch;
-    
+
 	for(var i = 0; i < branches.length; i++ ){
 		if( branches[i].id == id ){
 			currentBranch = branches[i];
@@ -158,10 +153,10 @@ function showBranch(id){
 
 	var decisionLinksHTML = '<div class="decision-links row">';
 	if(currentBranch.id !== '1'){
-		decisionLinksHTML += '<div class="col-xs-6"><a class=" back-link">  <span class="glyphicon glyphicon-chevron-left"></span> Back</a></div>' +
-        '<div class="col-xs-6">';
-	} else {
-		decisionLinksHTML += '<div class="col-xs-6"></div> <div class="col-xs-6">';
+		decisionLinksHTML += '<div class="col-md-6"><h5><a class=" back-link">  <span class="glyphicon glyphicon-chevron-left"></span> Back</a></h5></div>';
+    }
+    else {
+		decisionLinksHTML += '<div class="col-md-6"></div>';
     }
 
 	for(var d = 0; d < currentBranch.forkIDs.length; d++ ){
@@ -171,19 +166,19 @@ function showBranch(id){
 			link = 'href="' + forkContent + '"';
 		}
         if (d === 1){
-            decisionLinksHTML += '<a class="btn btn-info pull-right"  ' + link + ' id="' + currentBranch.forkIDs[d] + '">' + currentBranch.forkLabels[d] + '</a>';
+            decisionLinksHTML += '<div class="col-md-3"><a class="btn btn-info btn-block"  ' + link + ' id="' + currentBranch.forkIDs[d] + '">' + currentBranch.forkLabels[d] + '</a></div>';
         } else {
-            decisionLinksHTML += '<a class="btn btn-info"  ' + link + ' id="' + currentBranch.forkIDs[d] + '">' + currentBranch.forkLabels[d] + '</a>';
+            decisionLinksHTML += '<div class="col-md-3"><a class="btn btn-info btn-block"  ' + link + ' id="' + currentBranch.forkIDs[d] + '">' + currentBranch.forkLabels[d] + '</a></div>';
         }
 	}
-	decisionLinksHTML += '</div></div>';
+	decisionLinksHTML += '</div>';
 
     //insert referral link here
     var scanTxt = currentBranch.content.replace('{{','<a class="referral-link" href="#" onClick="generateReferral(false, false);return false;">').replace('}}','</a>');
 	var branchHTML = '<div id="branch-' + currentBranch.id + '" class="tree-content-box lead"><div class="content">' + scanTxt + '</div></div>';
 	$('.panel-body').html(branchHTML).attr('data-branch',currentBranch.id);
     $('.panel-footer').html(decisionLinksHTML);
-    
+
 	resetActionLinks();
 }
 

@@ -64,13 +64,40 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
-
-.panel-body{min-height:200px}
-
-
+.btn-block{margin: 15px 0px 15px 0px}
+.panel-body{min-height:120px}
 
 
 
+/* Large desktops and laptops */
+@media (min-width: 1200px) {
+
+    .btn-block{margin:0px 0px 0px 0px};
+    .panel-body{min-height:600px}
+}
+
+/* Portrait tablets and medium desktops */
+@media (min-width: 992px) and (max-width: 1199px) {
+
+    .panel-body{min-height:400px}
+}
+
+/* Portrait tablets and small desktops */
+@media (min-width: 768px) and (max-width: 991px) {
+
+    .panel-body{min-height:400px}
+}
+
+/* Landscape phones and portrait tablets */
+@media (max-width: 767px) {
+
+    .panel-body{min-height:80px}
+}
+
+/* Landscape phones and smaller */
+@media (max-width: 480px) {
+
+}
 
 
 
