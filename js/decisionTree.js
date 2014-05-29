@@ -12,9 +12,6 @@ $(document).ready(function (){
         window.localStorage.removeItem('idt-sess-id');
     }
 
-    //windowWidth = $('#tree-window').show().outerWidth(false);
-    //sliderWidth = 0;
-    //slideTime = 300;
     var branches = [];
     var options = {};
     var thisURL = String(document.location);
@@ -51,8 +48,7 @@ function buildNodes(xmlData, id) {
 	var maxDepth = 0;
     branches = [];
 	treeData = xmlData;
-	$(xmlData).find('branch').each(
-		function(){
+	$(xmlData).find('branch').each(function(){
 			var branch = new TreeBranch();
 			branch.id = $(this).attr('id');
 			branch.content = $(this).find('content').text();
@@ -68,8 +64,7 @@ function buildNodes(xmlData, id) {
 				maxDepth = branchDepthParts.length;
 			}
         });
-	//sliderWidth = windowWidth * maxDepth;
-	//$('#tree-slider').width( sliderWidth );
+
 	var resetText = $(xmlData).find('resetText').text();
     if (resetText !== ''){
         $('#tree-reset').html(resetText);
@@ -78,7 +73,7 @@ function buildNodes(xmlData, id) {
     }
 
     //New code to show description and disclaimer
-    $('.app-title, title, .navbar-brand').text($(xmlData).find('title').text());
+    $('.app-title, title ').text($(xmlData).find('title').text());
 	$('.panel-body').html($(xmlData).find('description').text() );
     var existingUser = '';
     if (window.localStorage.getItem('idt-user')){ //this "user" has has done a tree before
@@ -104,6 +99,7 @@ function buildNodes(xmlData, id) {
                 });
                 //$('.panel-heading').hide();
                 showBranch(1);
+                $('.navbar').removeClass('hidden');
             });
         });
     } else {
@@ -115,6 +111,7 @@ function buildNodes(xmlData, id) {
                 window.localStorage.setItem('idt-user', resp.userid);
                 window.localStorage.setItem('idt-sess-id', resp.sessid);
                 showBranch(1);
+                $('.navbar').removeClass('hidden');
                 //$('.reset-container').show();
             });
             //$('.panel-heading').hide();
@@ -171,6 +168,7 @@ function showBranch(id){
             decisionLinksHTML += '<div class="col-md-3"><a class="btn btn-info btn-block"  ' + link + ' id="' + currentBranch.forkIDs[d] + '">' + currentBranch.forkLabels[d] + '</a></div>';
         }
 	}
+
 	decisionLinksHTML += '</div>';
 
     //insert referral link here
@@ -184,15 +182,28 @@ function showBranch(id){
 
 function generateReferral(zip, distance) {
     var url;
+    var sessId = window.localStorage.getItem('idt-sess-id');
     if (zip){
-        url = 'private/referral.php?zip=' + zip + '&geo_range=' + distance;
+        url = backendUrl + 'private/referral_mobile.php?zip=' + zip + '&geo_range=' + distance;
     } else {
-        url = 'private/referral.php';
+        url = backendUrl + 'private/referral_mobile.php?sess_id=' + sessId;
     }
-    $('#tree-slider').html('Finding referrals for you.');
-    $('#tree-slider').load(url, function (){
-        $('table').width($('#tree-window').width() - 20);
-        $('.addTooltip').tooltip();
+    $('.panel-body').html('Let us know where you are so we can find help nearby.');
+    navigator.geolocation.getCurrentPosition(function(position){
+
+        $.post(backendUrl + 'private/backend.php', {
+            action: 'update_location',
+            lat: position.coords.latitude,
+            long: position.coords.longitude,
+            user_id: window.localStorage.getItem('idt-user')
+        },function (e){
+
+        });
+        $('.panel-body').html('Finding referrals for you.');
+    });
+    $('.panel-body').load(url, function (){
+        //$('table').width($('#tree-window').width() - 20);
+        //$('.addTooltip').tooltip();
 
         //Set form values if user-defined query
         if (zip){
@@ -219,14 +230,14 @@ function generateReferral(zip, distance) {
         });
 
     });
-    $('#tree-window').scrollTo( 0 + 'px', {
-        axis:'x',
-        duration: slideTime,
-        easing:'easeInOutExpo',
-        onAfter: function(){
-            $('.tree-content-box:gt(0)').remove();
-        }
-    });
+    //$('#tree-window').scrollTo( 0 + 'px', {
+    //    axis:'x',
+    //    duration: slideTime,
+    //    easing:'easeInOutExpo',
+    //    onAfter: function(){
+    //        $('.tree-content-box:gt(0)').remove();
+    //    }
+    //});
 }
 
 
