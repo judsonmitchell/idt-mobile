@@ -176,14 +176,23 @@ function showBranch(id){
 	resetActionLinks();
 }
 
-function generateReferral(zip, distance) {
-    var url;
+/*
+ possibilities:
+
+ geo success, automated
+ geo success, user-initiated
+
+ geo fail, user-initiated
+
+*/
+function generateReferralManual(zip, distance){
+
+    var url = backendUrl + 'private/referral_mobile.php?zip=' + zip + '&geo_range=' + distance;
+
+}
+function generateReferral() {
     var sessId = window.localStorage.getItem('idt-sess-id');
-    if (zip){
-        url = backendUrl + 'private/referral_mobile.php?zip=' + zip + '&geo_range=' + distance;
-    } else {
-        url = backendUrl + 'private/referral_mobile.php?sess_id=' + sessId;
-    }
+
     $('.panel-body').html('Let us know where you are so we can find help nearby.');
     navigator.geolocation.getCurrentPosition(function succcess(position){
 
@@ -195,20 +204,13 @@ function generateReferral(zip, distance) {
         },function (e){
             $('.panel-body').html('Finding referrals for you.');
         });
-        $('.panel-body').load(url, function (){
-            //$('table').width($('#tree-window').width() - 20);
-            //$('.addTooltip').tooltip();
+        $('.panel-body').load(backendUrl + 'private/referral_mobile.php?sess_id=' + sessId, function (){
             $('.panel-footer').hide();
-            //Set form values if user-defined query
-            if (zip){
-                $('#geoRange').val(distance);
-                $('#zipCode').val(zip);
-            }
 
             //Add listener for user change
             $('#refSubmit').click(function (e) {
                 e.preventDefault();
-                generateReferral($('#zipCode').val(),$('#geoRange').val());
+                generateReferralManual($('#zipCode').val(),$('#geoRange').val());
 
             });
 
