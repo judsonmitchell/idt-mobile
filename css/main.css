@@ -65,6 +65,7 @@ textarea {
    Author's custom styles
    ========================================================================== */
 .btn-block{margin: 15px 0px 15px 0px}
+.panel-title{font-size:15px}
 .panel-body{min-height:120px}
 .navbar-brand{padding:5px 5px}
 
@@ -91,7 +92,7 @@ textarea {
 /* Landscape phones and portrait tablets */
 @media (max-width: 767px) {
 
-    .panel-body{min-height:80px}
+    .panel-body{min-height:100px}
 }
 
 /* Landscape phones and smaller */

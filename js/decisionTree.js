@@ -95,11 +95,9 @@ function buildNodes(xmlData, id) {
                     window.localStorage.setItem('idt-user', resp.userid);
                     window.localStorage.setItem('idt-sess-id', resp.sessid);
                     showBranch(1);
-                    //$('.reset-container').show();
+                    $('.page-header').hide();
+                    $('.navbar').removeClass('hidden');
                 });
-                //$('.panel-heading').hide();
-                showBranch(1);
-                $('.navbar').removeClass('hidden');
             });
         });
     } else {
@@ -111,11 +109,9 @@ function buildNodes(xmlData, id) {
                 window.localStorage.setItem('idt-user', resp.userid);
                 window.localStorage.setItem('idt-sess-id', resp.sessid);
                 showBranch(1);
+                $('.page-header').hide();
                 $('.navbar').removeClass('hidden');
-                //$('.reset-container').show();
             });
-            //$('.panel-heading').hide();
-            showBranch(1);
         });
     }
 }
@@ -189,7 +185,7 @@ function generateReferral(zip, distance) {
         url = backendUrl + 'private/referral_mobile.php?sess_id=' + sessId;
     }
     $('.panel-body').html('Let us know where you are so we can find help nearby.');
-    navigator.geolocation.getCurrentPosition(function(position){
+    navigator.geolocation.getCurrentPosition(function succcess(position){
 
         $.post(backendUrl + 'private/backend.php', {
             action: 'update_location',
@@ -197,47 +193,40 @@ function generateReferral(zip, distance) {
             long: position.coords.longitude,
             user_id: window.localStorage.getItem('idt-user')
         },function (e){
-
+            $('.panel-body').html('Finding referrals for you.');
         });
-        $('.panel-body').html('Finding referrals for you.');
-    });
-    $('.panel-body').load(url, function (){
-        //$('table').width($('#tree-window').width() - 20);
-        //$('.addTooltip').tooltip();
-
-        //Set form values if user-defined query
-        if (zip){
-            $('#geoRange').val(distance);
-            $('#zipCode').val(zip);
-        }
-
-        //Add listener for user change
-        $('#refSubmit').click(function (e) {
-            e.preventDefault();
-            generateReferral($('#zipCode').val(),$('#geoRange').val());
-
-        });
-
-        //Add listener for user referral click
-        $('.click-through').click(function (e) {
-            if ($(this).hasClass('glyphicon-earphone')){
-                $(this).siblings('.phone-hide').show();
+        $('.panel-body').load(url, function (){
+            //$('table').width($('#tree-window').width() - 20);
+            //$('.addTooltip').tooltip();
+            $('.panel-footer').hide();
+            //Set form values if user-defined query
+            if (zip){
+                $('#geoRange').val(distance);
+                $('#zipCode').val(zip);
             }
-            var refId = $(this).attr('data-id');
-            $.post('private/backend.php',{'action':'link_click','referral_id': refId}, function (data){
-                console.log('done');
-            });
-        });
 
+            //Add listener for user change
+            $('#refSubmit').click(function (e) {
+                e.preventDefault();
+                generateReferral($('#zipCode').val(),$('#geoRange').val());
+
+            });
+
+            //Add listener for user referral click
+            $('.click-through').click(function (e) {
+                if ($(this).hasClass('glyphicon-earphone')){
+                    $(this).siblings('.phone-hide').show();
+                }
+                var refId = $(this).attr('data-id');
+                $.post('private/backend.php',{'action':'link_click','referral_id': refId}, function (data){
+                    console.log('done');
+                });
+            });
+
+        });
+    }, function fail(){
+        $('.panel-body').html('Sorry, we don\'t know where you are.');
     });
-    //$('#tree-window').scrollTo( 0 + 'px', {
-    //    axis:'x',
-    //    duration: slideTime,
-    //    easing:'easeInOutExpo',
-    //    onAfter: function(){
-    //        $('.tree-content-box:gt(0)').remove();
-    //    }
-    //});
 }
 
 
