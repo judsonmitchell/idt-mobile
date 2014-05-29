@@ -168,7 +168,7 @@ function showBranch(id){
 	decisionLinksHTML += '</div>';
 
     //insert referral link here
-    var scanTxt = currentBranch.content.replace('{{','<a class="referral-link" href="#" onClick="generateReferral(false, false);return false;">').replace('}}','</a>');
+    var scanTxt = currentBranch.content.replace('{{','<a class="referral-link" href="#" onClick="generateReferralGeo();return false;">').replace('}}','</a>');
 	var branchHTML = '<div id="branch-' + currentBranch.id + '" class="tree-content-box lead"><div class="content">' + scanTxt + '</div></div>';
 	$('.panel-body').html(branchHTML).attr('data-branch',currentBranch.id);
     $('.panel-footer').html(decisionLinksHTML);
@@ -176,26 +176,49 @@ function showBranch(id){
 	resetActionLinks();
 }
 
-/*
- possibilities:
+function addReferralListeners(){
 
- geo success, automated
- geo success, user-initiated
+    $('.panel-footer').hide();
 
- geo fail, user-initiated
+    $('.ref-toggle').click(function (e){
+        $('.ref-chooser').removeClass('hidden');
+    });
 
-*/
+    //Add listener for user change
+    $('#refSubmit').click(function (e) {
+        e.preventDefault();
+        generateReferralManual($('#zipCode').val(),$('#geoRange').val());
+
+    });
+
+    //Add listener for user referral click
+    $('.click-through').click(function (e) {
+        if ($(this).hasClass('glyphicon-earphone')){
+            $(this).siblings('.phone-hide').show();
+        }
+        var refId = $(this).attr('data-id');
+        $.post('private/backend.php',{'action':'link_click','referral_id': refId}, function (data){
+            console.log('done');
+        });
+    });
+
+}
+
 function generateReferralManual(zip, distance){
 
     var url = backendUrl + 'private/referral_mobile.php?zip=' + zip + '&geo_range=' + distance;
-
+    $('.panel-body').load(url, function (){
+        $('#zipCode').val(zip);
+        $('#geoRange').val(distance);
+        addReferralListeners();
+    });
 }
-function generateReferral() {
+
+function generateReferralGeo() {
     var sessId = window.localStorage.getItem('idt-sess-id');
 
     $('.panel-body').html('Let us know where you are so we can find help nearby.');
     navigator.geolocation.getCurrentPosition(function succcess(position){
-
         $.post(backendUrl + 'private/backend.php', {
             action: 'update_location',
             lat: position.coords.latitude,
@@ -205,30 +228,21 @@ function generateReferral() {
             $('.panel-body').html('Finding referrals for you.');
         });
         $('.panel-body').load(backendUrl + 'private/referral_mobile.php?sess_id=' + sessId, function (){
-            $('.panel-footer').hide();
-
-            //Add listener for user change
-            $('#refSubmit').click(function (e) {
-                e.preventDefault();
-                generateReferralManual($('#zipCode').val(),$('#geoRange').val());
-
-            });
-
-            //Add listener for user referral click
-            $('.click-through').click(function (e) {
-                if ($(this).hasClass('glyphicon-earphone')){
-                    $(this).siblings('.phone-hide').show();
-                }
-                var refId = $(this).attr('data-id');
-                $.post('private/backend.php',{'action':'link_click','referral_id': refId}, function (data){
-                    console.log('done');
-                });
-            });
-
+            addReferralListeners();
+            $('#zipCode').attr('placeholder', '[Your Current Location]');
         });
     }, function fail(){
-        $('.panel-body').html('Sorry, we don\'t know where you are.');
+        var zipForm = '<h3>Geolocation is unavailable.</h3>' +
+        '<form name="zip_only"><input name="zip" placeholder="Enter Your Zip Code"><button type="submit">Go</button></form>';
+        $('.panel-body').html(zipForm);
+        $('form[name="zip_only"]').submit(function (e) {
+            e.preventDefault();
+            var userZip = $(this).find('input').val();
+            generateReferralManual(userZip,'105600');
+        });
     });
+
 }
+
 
 
