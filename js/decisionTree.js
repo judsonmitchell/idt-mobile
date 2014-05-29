@@ -178,7 +178,7 @@ function showBranch(id){
 
 function addReferralListeners(){
 
-    $('.panel-footer').hide();
+    $('.panel-default').hide();
 
     $('.ref-toggle').click(function (e){
         $('.ref-chooser').removeClass('hidden');
@@ -207,7 +207,7 @@ function addReferralListeners(){
 function generateReferralManual(zip, distance){
 
     var url = backendUrl + 'private/referral_mobile.php?zip=' + zip + '&geo_range=' + distance;
-    $('.panel-body').load(url, function (){
+    $('#referral-results').load(url, function (){
         $('#zipCode').val(zip);
         $('#geoRange').val(distance);
         addReferralListeners();
@@ -227,7 +227,7 @@ function generateReferralGeo() {
         },function (e){
             $('.panel-body').html('Finding referrals for you.');
         });
-        $('.panel-body').load(backendUrl + 'private/referral_mobile.php?sess_id=' + sessId, function (){
+        $('#referral-results').load(backendUrl + 'private/referral_mobile.php?sess_id=' + sessId, function (){
             addReferralListeners();
             $('#zipCode').attr('placeholder', '[Your Current Location]');
         });
