@@ -20,7 +20,8 @@
     <gap:plugin name="org.apache.cordova.statusbar"/>
     <gap:plugin name="org.apache.cordova.geolocation"/>
     <gap:plugin name="org.apache.cordova.inappbrowser" />
-
+    <gap:plugin name="org.apache.cordova.network-information" />
+    
     <preference name="android-targetSdkVersion" value="14" />
     <access origin="*"/>
     <icon src="icon.png" />
