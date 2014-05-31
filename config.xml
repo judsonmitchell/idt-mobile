@@ -22,6 +22,7 @@
 
     <preference name="permissions" value="none" />
     <preference name="android-targetSdkVersion" value="14" />
+    <access origin="*"/>
 
     <!-- Android -->
     <icon src="res/icon/android/drawable-ldpi/ldpi.png" gap:platform="android" gap:qualifier="ldpi" />
