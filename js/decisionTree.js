@@ -193,12 +193,11 @@ function addReferralListeners(){
 
     //Add listener for user referral click
     $('.click-through').click(function (e) {
-        if ($(this).hasClass('glyphicon-earphone')){
-            $(this).siblings('.phone-hide').show();
-        }
+        var url = $(this).attr('href');
         var refId = $(this).attr('data-id');
+
         $.post(backendUrl + 'private/backend.php',{'action':'link_click','referral_id': refId}, function (data){
-            console.log('done');
+            window.open(url, '_system', 'location=yes');
         });
     });
 
@@ -245,3 +244,10 @@ function generateReferralGeo() {
     );
 
 }
+
+$('.external-link').click(function (e) {
+    alert('test');
+    e.preventDefault();
+    var url = $(this).attr('href');
+    window.open(url, '_system', 'location=yes');
+});
