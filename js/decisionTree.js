@@ -8,6 +8,7 @@ var treeData,
 document.addEventListener('deviceready', onDeviceReady, false);
 
 function onDeviceReady(){
+    alert('device ready');
     var networkState = navigator.connection.type;
     var states = {};
 
@@ -199,7 +200,9 @@ function addReferralListeners(){
         var refId = $(this).attr('data-id');
 
         $.post(backendUrl + 'private/backend.php',{'action':'link_click','referral_id': refId}, function (data){
-            window.open(url, '_system', 'location=yes');
+            //window.open(url, '_system', 'location=yes');
+            navigator.app.loadUrl(url, { openExternal:true });
+
         });
     });
 
@@ -247,9 +250,3 @@ function generateReferralGeo() {
 
 }
 
-$('.external-link').click(function (e) {
-    alert('test');
-    e.preventDefault();
-    var url = $(this).attr('href');
-    window.open(url, '_system', 'location=yes');
-});
