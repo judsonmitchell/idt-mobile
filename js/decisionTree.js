@@ -197,7 +197,7 @@ function addReferralListeners(){
             $(this).siblings('.phone-hide').show();
         }
         var refId = $(this).attr('data-id');
-        $.post('private/backend.php',{'action':'link_click','referral_id': refId}, function (data){
+        $.post(backendUrl + 'private/backend.php',{'action':'link_click','referral_id': refId}, function (data){
             console.log('done');
         });
     });
