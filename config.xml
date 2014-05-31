@@ -22,7 +22,7 @@
     <gap:plugin name="org.apache.cordova.inappbrowser" />
 
     <preference name="android-targetSdkVersion" value="14" />
-    <access origin="http://loyolalawtech.org"/>
+    <access origin="*"/>
     <icon src="icon.png" />
 
     <!-- Android -->
