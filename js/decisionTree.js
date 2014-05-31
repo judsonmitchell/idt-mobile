@@ -237,7 +237,7 @@ function generateReferralGeo() {
         });
     }, function fail(){
         var zipForm = '<h3>Geolocation is unavailable.</h3>' +
-        '<form name="zip_only"><input name="zip" placeholder="Enter Your Zip Code"><button type="submit">Go</button></form>';
+        '<form name="zip_only"><input type="number" name="zip" placeholder="Enter Your Zip Code"><button type="submit">Go</button></form>';
         $('.panel-body').html(zipForm);
         $('form[name="zip_only"]').submit(function (e) {
             e.preventDefault();
@@ -250,3 +250,9 @@ function generateReferralGeo() {
 
 }
 
+
+$('.external-link').click(function (e){
+    e.preventDefault();
+    var url = $(this).attr('href');
+    navigator.app.loadUrl(url, { openExternal:true });
+});
