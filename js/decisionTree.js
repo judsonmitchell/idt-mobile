@@ -11,8 +11,7 @@ function onDeviceReady(){
     var networkState = navigator.connection.type;
     var states = {};
     if (networkState === 'none'){
-        alert('Connection type: ' + states[networkState]);
-        $('.panel-body').html('<h3>You are offline</h3><p>Your device appears to be offline' +
+        $('.panel-body').html('<h3>You are offline</h3><p>Your device appears to be offline. ' +
         'You need to be connected to the internet to use this application');
         return;
     } else {
