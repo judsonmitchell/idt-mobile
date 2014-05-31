@@ -15,16 +15,14 @@
         Judson Mitchell
     </author>
 
+    <preference name="permissions" value="none" />
     <preference name="phonegap-version" value="3.4.0" />         
     <gap:plugin name="org.apache.cordova.statusbar"/>
     <gap:plugin name="org.apache.cordova.geolocation"/>
 
-    <icon src="icon.png" />
-    <!-- 
-    <preference name="permissions" value="none" />
-    -->
     <preference name="android-targetSdkVersion" value="14" />
     <access origin="*"/>
+    <icon src="icon.png" />
 
     <!-- Android -->
     <icon src="res/icon/android/drawable-ldpi/ldpi.png" gap:platform="android" gap:qualifier="ldpi" />
