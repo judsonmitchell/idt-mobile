@@ -20,8 +20,9 @@
     <gap:plugin name="org.apache.cordova.geolocation"/>
 
     <icon src="icon.png" />
-
+    <!-- 
     <preference name="permissions" value="none" />
+    -->
     <preference name="android-targetSdkVersion" value="14" />
     <access origin="*"/>
 
