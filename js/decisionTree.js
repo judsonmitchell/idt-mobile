@@ -217,7 +217,7 @@ function generateReferralManual(zip, distance){
 function generateReferralGeo() {
     var sessId = window.localStorage.getItem('idt-sess-id');
 
-    $('.panel-body').html('Let us know where you are so we can find help nearby.');
+    $('.panel-body').html('Attempting to get your location.');
     navigator.geolocation.getCurrentPosition(function succcess(position){
         $.post(backendUrl + 'private/backend.php', {
             action: 'update_location',
