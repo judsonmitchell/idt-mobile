@@ -8,14 +8,14 @@ var treeData,
 document.addEventListener('deviceready', onDeviceReady, false);
 
 function onDeviceReady(){
-    alert('device ready');
     var networkState = navigator.connection.type;
     var states = {};
-
+    alert(networkState + ' typeof ' + typeof networkState);
     if (networkState === 'Connection.NONE'){
-            alert('Connection type: ' + states[networkState]);
-            $('.panel-body').html('<h3>You are offline</h3><p>Your device appears to be offline' +
-            'You need to be connected to the internet to use this application');
+        alert('Connection type: ' + states[networkState]);
+        $('.panel-body').html('<h3>You are offline</h3><p>Your device appears to be offline' +
+        'You need to be connected to the internet to use this application');
+        return;
     } else {
 
         //Get rid of any previous sessions -THIS NEEDS TO BE LOCALSTORAGE instead
