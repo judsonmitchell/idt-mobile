@@ -202,6 +202,7 @@ function addReferralListeners(){
         $.post(backendUrl + 'private/backend.php',{'action':'link_click_mobile','referral_id': refId, 'sess_id': sess, 'user_id':user}, function (data){
             window.open(url, '_system', 'location=yes');
             //navigator.app.loadUrl(url, { openExternal:true });
+            alert('debug');
 
         });
     });
