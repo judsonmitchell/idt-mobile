@@ -195,8 +195,11 @@ function addReferralListeners(){
         e.preventDefault();
         var url = $(this).attr('href');
         var refId = $(this).attr('data-id');
+        var user = window.localStorage.getItem('idt-user');
+        var sess = window.localStorage.getItem('idt-sess-id');
 
-        $.post(backendUrl + 'private/backend.php',{'action':'link_click','referral_id': refId}, function (data){
+        
+        $.post(backendUrl + 'private/backend.php',{'action':'link_click_mobile','referral_id': refId, 'sess_id': sess, 'user_id':user}, function (data){
             window.open(url, '_system', 'location=yes');
             //navigator.app.loadUrl(url, { openExternal:true });
 
