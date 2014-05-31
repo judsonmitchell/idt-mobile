@@ -192,6 +192,7 @@ function addReferralListeners(){
 
     //Add listener for user referral click
     $('.click-through').click(function (e) {
+        e.preventDefault();
         var url = $(this).attr('href');
         var refId = $(this).attr('data-id');
 
