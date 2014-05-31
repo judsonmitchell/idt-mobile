@@ -196,8 +196,8 @@ function addReferralListeners(){
         var refId = $(this).attr('data-id');
 
         $.post(backendUrl + 'private/backend.php',{'action':'link_click','referral_id': refId}, function (data){
-            //window.open(url, '_system', 'location=yes');
-            navigator.app.loadUrl(url, { openExternal:true });
+            window.open(url, '_system', 'location=yes');
+            //navigator.app.loadUrl(url, { openExternal:true });
 
         });
     });
