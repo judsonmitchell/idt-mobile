@@ -17,11 +17,13 @@
 
     <preference name="permissions" value="none" />
     <preference name="phonegap-version" value="3.4.0" />         
+    <preference name="android-targetSdkVersion" value="14" />
+
     <gap:plugin name="org.apache.cordova.statusbar"/>
     <gap:plugin name="org.apache.cordova.geolocation"/>
     <gap:plugin name="org.apache.cordova.network-information" />
-    
-    <preference name="android-targetSdkVersion" value="14" />
+    <gap:plugin name="org.apache.cordova.inappbrowser" />    
+
     <access origin="*"/>
     <icon src="icon.png" />
 
