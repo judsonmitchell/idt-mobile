@@ -240,6 +240,8 @@ function generateReferralGeo() {
             var userZip = $(this).find('input').val();
             generateReferralManual(userZip,'105600');
         });
-    });
+    },
+    { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true }
+    );
 
 }
