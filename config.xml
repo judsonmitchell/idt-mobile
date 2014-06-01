@@ -23,12 +23,14 @@
     <preference name="permissions" value="none" />
     <preference name="phonegap-version" value="3.4.0" />         
     <preference name="android-targetSdkVersion" value="14" />
-    <!-- The following seem to have no effect, but keep for the moment -->
+
+    <!-- The following seem to have no effect
     <preference name="StatusBarOverlaysWebView" value="false" />
     <preference name="ios-darkstatusbar" value="true" />
     <preference name="webviewbounce" value="false" />     
     <preference name="stay-in-webview" value="false" />     
     <preference name="fullscreen" value="false" />           <!-- all: hides the status bar at the top of the screen -->
+    -->
 
     <access origin="*"/>
     <icon src="icon.png" />
