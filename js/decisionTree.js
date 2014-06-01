@@ -212,7 +212,8 @@ function addReferralListeners(){
                 //link.style.position = 'absolute';
                 //document.body.appendChild(link);
                 //link.click();
-                window.open(url, '_blank');
+                alert(url);
+                window.open(url, '_system');
             } else {
                 window.open(url, '_system', 'location=yes');
                 //navigator.app.loadUrl(url, { openExternal:true });
