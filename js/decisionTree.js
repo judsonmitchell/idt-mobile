@@ -262,5 +262,6 @@ function generateReferralGeo() {
 $('.external-link').click(function (e){
     e.preventDefault();
     var url = $(this).attr('href');
-    navigator.app.loadUrl(url, { openExternal:true });
+    //navigator.app.loadUrl(url, { openExternal:true });
+    window.open(url, '_system', 'location=yes');
 });
