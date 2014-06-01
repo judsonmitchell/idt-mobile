@@ -233,7 +233,7 @@ function generateReferralGeo() {
         });
         $('#referral-results').load(backendUrl + 'private/referral_mobile.php?sess_id=' + sessId, function (){
             addReferralListeners();
-            $('#zipCode').attr('placeholder', '[Your Current Location]');
+            $('#zipCode').attr('placeholder', 'Please Provide Zip Code');
         });
     }, function fail(){
         var zipForm = '<h3>Geolocation is unavailable.</h3>' +
