@@ -197,12 +197,24 @@ function addReferralListeners(){
         var refId = $(this).attr('data-id');
         var user = window.localStorage.getItem('idt-user');
         var sess = window.localStorage.getItem('idt-sess-id');
+        var thisIsAPhone = false;
+        if ($(this).hasClass('phone-link')){
+            thisIsAPhone = true;
+        }
 
-        
         $.post(backendUrl + 'private/backend.php',{'action':'link_click_mobile','referral_id': refId, 'sess_id': sess, 'user_id':user}, function (data){
-            window.open(url, '_system', 'location=yes');
-            //navigator.app.loadUrl(url, { openExternal:true });
 
+            if (thisIsAPhone){
+                var link = document.createElement('a');
+                link.href = url;
+                link.style.visibility = 'hidden';
+                link.style.position = 'absolute';
+                document.body.appendChild(link);
+                link.click();
+            } else {
+                window.open(url, '_system', 'location=yes');
+                //navigator.app.loadUrl(url, { openExternal:true });
+            }
         });
     });
 
