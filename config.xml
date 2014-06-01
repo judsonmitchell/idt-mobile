@@ -28,6 +28,7 @@
     <preference name="ios-darkstatusbar" value="true" />
     <preference name="webviewbounce" value="false" />     
     <preference name="stay-in-webview" value="false" />     
+    <preference name="fullscreen" value="false" />           <!-- all: hides the status bar at the top of the screen -->
 
     <access origin="*"/>
     <icon src="icon.png" />
