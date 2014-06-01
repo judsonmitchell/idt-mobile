@@ -212,8 +212,9 @@ function addReferralListeners(){
                 //link.style.position = 'absolute';
                 //document.body.appendChild(link);
                 //link.click();
-                alert(url);
-                window.open(url, '_system');
+                var strip = url.replace(/[^a-zA-Z\d:]/g, '');
+                alert(strip);
+                window.open(strip, '_system');
             } else {
                 window.open(url, '_system', 'location=yes');
                 //navigator.app.loadUrl(url, { openExternal:true });
