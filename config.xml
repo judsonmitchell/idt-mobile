@@ -36,11 +36,11 @@
     <icon src="icon.png" />
 
     <!-- Android -->
-    <icon src="res/icon/android/drawable-ldpi/ldpi.png" gap:platform="android" gap:qualifier="ldpi" />
-    <icon src="res/icon/android/drawable-hdpi/hdpi.png" gap:platform="android" gap:qualifier="hdpi" />
-    <icon src="res/icon/android/drawable-mdpi/mdpi.png" gap:platform="android" gap:qualifier="mdpi" />
-    <icon src="res/icon/android/drawable-xdpi/xhdpi.png" gap:platform="android" gap:qualifier="xdpi" />
-    <icon src="res/icon/android/drawable-xxhdpi/xxhdpi.png" gap:platform="android" gap:qualifier="xxhdpi" />
+    <icon src="res/icon/android/drawable-ldpi/ic_launcher.png" gap:platform="android" gap:qualifier="ldpi" />
+    <icon src="res/icon/android/drawable-hdpi/ic_launcher.png" gap:platform="android" gap:qualifier="hdpi" />
+    <icon src="res/icon/android/drawable-mdpi/ic_launcher.png" gap:platform="android" gap:qualifier="mdpi" />
+    <icon src="res/icon/android/drawable-xdpi/ic_launcher.png" gap:platform="android" gap:qualifier="xdpi" />
+    <icon src="res/icon/android/drawable-xxhdpi/ic_launcher.png" gap:platform="android" gap:qualifier="xxhdpi" />
 
     <!-- iPhone / iPod Touch  7-->
     <icon src="res/icon/ios7/Icon-60.png" gap:platform="ios" width="60" height="60" />
