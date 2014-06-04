@@ -3,7 +3,7 @@
         xmlns:gap   = "http://phonegap.com/ns/1.0"
         id          = "org.loyolalawtech.lea"
         versionCode = "2"
-        version     = "1.0.4">
+        version     = "1.0.5">
 
     <!-- versionCode is optional and Android only -->
 
@@ -15,6 +15,7 @@
         Judson Mitchell
     </author>
 
+    <gap:plugin name="org.apache.cordova.statusbar"/>
     <gap:plugin name="org.apache.cordova.geolocation"/>
     <gap:plugin name="org.apache.cordova.network-information" />
     <gap:plugin name="org.apache.cordova.inappbrowser" />    
@@ -23,6 +24,7 @@
     <preference name="phonegap-version" value="3.4.0" />         
     <preference name="android-targetSdkVersion" value="14" />
 
+    <preference name="StatusBarOverlaysWebView" value="false" />
     <preference name="webviewbounce" value="false" />     
     <preference name="stay-in-webview" value="false" />     
     <preference name="fullscreen" value="false" />           <!-- all: hides the status bar at the top of the screen -->
