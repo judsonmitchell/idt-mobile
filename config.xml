@@ -24,13 +24,11 @@
     <preference name="phonegap-version" value="3.4.0" />         
     <preference name="android-targetSdkVersion" value="14" />
 
-    <!-- The following seem to have no effect
     <preference name="StatusBarOverlaysWebView" value="false" />
     <preference name="ios-darkstatusbar" value="true" />
     <preference name="webviewbounce" value="false" />     
     <preference name="stay-in-webview" value="false" />     
     <preference name="fullscreen" value="false" />           <!-- all: hides the status bar at the top of the screen -->
-    -->
 
     <access origin="*"/>
     <icon src="icon.png" />
@@ -76,5 +74,17 @@
     <icon src="res/icon/ios/Icon-Small-50@2x.png" gap:platform="ios" width="100" height="100" />
 
 
+    <!-- splash 
+    <gap:splash src="splash.png" />
 
+    <gap:splash src="res/splash/Default.png" gap:platform="ios" width="320" height="480" />
+    <gap:splash src="res/splash/Default@2x.png" gap:platform="ios" width="640" height="960" />
+    <gap:splash src="res/splash/Default_iphone5.png" gap:platform="ios" width="640" height="1136" />
+
+    <gap:splash src="res/splash/Default-Portrait.png" gap:platform="ios" width="768" height="1024" />
+    <gap:splash src="res/splash/Default-Landscape.png" gap:platform="ios" width="1024" height="768" />
+
+    <gap:splash src="res/splash/Default-Portrait@2x.png" gap:platform="ios" width="1536" height="2048" />
+    <gap:splash src="res/splash/Default-Landscape@2x.png" gap:platform="ios" width="2048" height="1536" />
+    -->
 </widget>
