@@ -68,7 +68,7 @@ textarea {
 .panel-title{font-size:15px}
 .panel-body{min-height:120px}
 .navbar-brand{padding:5px 5px}
-
+.referral-link{text-decoration:underline}
 
 /* Large desktops and laptops */
 @media (min-width: 1200px) {

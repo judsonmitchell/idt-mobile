@@ -25,6 +25,13 @@ function onDeviceReady(){
     }
 }
 
+//For local testing
+//$(document).ready(function () {
+//    var branches = [];
+//    var options = {};
+//    loadData();
+//});
+
 function loadData() {
 	$.ajax({
 		type: 'GET',
@@ -87,7 +94,7 @@ function buildNodes(xmlData, id) {
         $('#tree-window .show-disclaimer').on('click', function (event) {
             event.preventDefault();
             $('.panel-body').html($(xmlData).find('disclaimer').text());
-            $('.panel-footer').html('<div class="checkbox"> <label> <input type="checkbox" id="agree"> <strong>I agree.</strong></label> </div>');
+            $('.panel-footer').html('<div class="checkbox"> <label class="lead"> <input type="checkbox" id="agree"> <strong>I agree.</strong></label> </div>');
             $('#agree').on('change', function (event) {
                 $.post(backendUrl + 'private/backend.php', {'action': 'log', 'existing_user': existingUser, 'tree_id': treeId, 'mobile': '1'}, function(data) {
                     var resp = $.parseJSON(data);
