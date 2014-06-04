@@ -76,19 +76,5 @@
     <icon src="res/icon/ios/Icon-Small-50@2x.png" gap:platform="ios" width="100" height="100" />
 
 
-    <!-- splash -->
-    <gap:splash src="splash.png" />
-
-    <!-- iPhone and iPod touch -->
-    <gap:splash src="res/splash/Default.png" gap:platform="ios" width="320" height="480" />
-    <gap:splash src="res/splash/Default@2x.png" gap:platform="ios" width="640" height="960" />
-    <gap:splash src="res/splash/Default_iphone5.png" gap:platform="ios" width="640" height="1136" />
-    <!-- iPad -->
-    <gap:splash src="res/splash/Default-Portrait.png" gap:platform="ios" width="768" height="1024" />
-    <gap:splash src="res/splash/Default-Landscape.png" gap:platform="ios" width="1024" height="768" />
-
-    <!-- Retina iPad -->
-    <gap:splash src="res/splash/Default-Portrait@2x.png" gap:platform="ios" width="1536" height="2048" />
-    <gap:splash src="res/splash/Default-Landscape@2x.png" gap:platform="ios" width="2048" height="1536" />
 
 </widget>
