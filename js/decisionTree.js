@@ -273,9 +273,16 @@ $('.external-link').click(function (e){
     window.open(url, '_system', 'location=yes');
 });
 
-//Any element with the class help text will load the help div. In
-//the decision tree editor, for example, you would just write in the html
-//with the link.
-$('.panel-body').on('click', 'help-text', function() {
-    alert('click');
+//Any element in panel-body with the class "help-text" will load the help div.
+
+$('.panel-body').on('click', '.help-text', function(e) {
+    e.preventDefault();
+    var url = $(this).attr('href');
+    $('.help-body').load(url);
+    $('#help').height(window.innerHeight);
+    $('#help').slideDown();
+    $('.back-nav').click(function (e){
+        e.preventDefault();
+        $('#help').slideUp();
+    });
 });

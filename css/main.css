@@ -70,6 +70,20 @@ textarea {
 .navbar-brand{padding:5px 5px}
 .referral-link{text-decoration:underline}
 
+#tree-window{position: relative;}
+#help{
+    background-color:grey;
+    opacity:.9;
+    display:none;
+    position:absolute;
+    top:0px;
+    left:0px;
+    color:#ffffff;
+    height:100%;
+    overflow-y:scroll;
+}
+#help .help-body h3 {margin-top:5px; margin-bottom:5px}
+.help-body{padding:0px 10px 0px 10px}
 /* Large desktops and laptops */
 @media (min-width: 1200px) {
 

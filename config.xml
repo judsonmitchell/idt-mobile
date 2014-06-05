@@ -2,8 +2,8 @@
     <widget xmlns   = "http://www.w3.org/ns/widgets"
         xmlns:gap   = "http://phonegap.com/ns/1.0"
         id          = "org.loyolalawtech.lea"
-        versionCode = "2"
-        version     = "1.0.6">
+        versionCode = "3"
+        version     = "1.0.7">
 
     <!-- versionCode is optional and Android only -->
 
