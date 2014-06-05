@@ -15,7 +15,7 @@ function onDeviceReady(){
         'You need to be connected to the internet to use this application');
         return;
     } else {
-        //Get rid of any previous sessions -THIS NEEDS TO BE LOCALSTORAGE instead
+        //Get rid of any previous sessions 
         if (window.localStorage.getItem('idt-sess-id')){
             window.localStorage.removeItem('idt-sess-id');
         }
