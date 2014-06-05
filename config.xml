@@ -27,7 +27,7 @@
     <preference name="StatusBarOverlaysWebView" value="false" />
     <preference name="webviewbounce" value="false" />     
     <preference name="stay-in-webview" value="false" />     
-    <preference name="fullscreen" value="false" />           <!-- all: hides the status bar at the top of the screen -->
+    <preference name="fullscreen" value="true" />           <!-- all: hides the status bar at the top of the screen -->
 
     <access origin="*"/>
     <icon src="icon.png" />
