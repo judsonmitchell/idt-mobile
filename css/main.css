@@ -81,6 +81,7 @@ textarea {
     color:#ffffff;
     height:100%;
     overflow-y:scroll;
+    margin-top:-20px;
 }
 #help .help-body h3 {margin-top:5px; margin-bottom:5px}
 .help-body{padding:0px 10px 0px 10px}
