@@ -93,7 +93,7 @@ textarea {
 }
 
 .fix-iOS{
-    margin-top:20px;
+    margin-top: 17px !important;
 }
 /* Portrait tablets and medium desktops */
 @media (min-width: 992px) and (max-width: 1199px) {

@@ -10,7 +10,7 @@ document.addEventListener('deviceready', onDeviceReady, false);
 function onDeviceReady(){
     var networkState = navigator.connection.type;
     var states = {};
-    alert(window.device.version); 
+
     if (networkState === 'none'){
         $('.panel-body').html('<h3>You are offline</h3><p>Your device appears to be offline. ' +
         'You need to be connected to the internet to use this application');
@@ -121,11 +121,6 @@ function buildNodes(xmlData, id) {
             });
         });
     }
-    //Attempt to fix iOS 7 status bar issue
-    //if(window.device && parseFloat(window.device.version) >= 7){
-    //    alert('yep');
-    //    $('nav').addClass('fix-iOS');
-    //}
 }
 
 function resetActionLinks(){
