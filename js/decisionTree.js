@@ -120,6 +120,10 @@ function buildNodes(xmlData, id) {
             });
         });
     }
+    //Attempt to fix iOS 7 status bar issue
+    if(window.device && parseFloat(window.device.version) >= 7){
+        $('nav').addClass('fix-iOS');
+    }
 }
 
 function resetActionLinks(){

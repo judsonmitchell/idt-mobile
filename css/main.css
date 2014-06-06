@@ -92,6 +92,9 @@ textarea {
     .panel-body{min-height:600px}
 }
 
+.fix-iOS{
+    margin-top:20px;
+}
 /* Portrait tablets and medium desktops */
 @media (min-width: 992px) and (max-width: 1199px) {
 
