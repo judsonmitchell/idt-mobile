@@ -14,7 +14,7 @@ function onDeviceReady(){
    // if (window.device && parseFloat(window.device.version) >= 7.0) {
    //      $('body').addClass('iOS7');
    // }
-    alert(window.device);
+    alert('test');
     if (networkState === 'none'){
         $('.panel-body').html('<h3>You are offline</h3><p>Your device appears to be offline. ' +
         'You need to be connected to the internet to use this application');
