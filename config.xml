@@ -24,10 +24,6 @@
     <preference name="phonegap-version" value="3.4.0" />         
     <preference name="android-targetSdkVersion" value="14" />
 
-    <preference name="StatusBarOverlaysWebView" value="true" />
-    <preference name="webviewbounce" value="false" />     
-    <preference name="stay-in-webview" value="false" />     
-    <preference name="fullscreen" value="true" />           <!-- all: hides the status bar at the top of the screen -->
 
     <access origin="*"/>
     <icon src="icon.png" />
