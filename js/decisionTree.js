@@ -11,10 +11,10 @@ function onDeviceReady(){
     var networkState = navigator.connection.type;
     var states = {};
     //Try to fix iOS7
-    if (window.device && parseFloat(window.device.version) >= 7.0) {
-         $('body').addClass('iOS7');
-    }
-
+   // if (window.device && parseFloat(window.device.version) >= 7.0) {
+   //      $('body').addClass('iOS7');
+   // }
+    alert(window.device);
     if (networkState === 'none'){
         $('.panel-body').html('<h3>You are offline</h3><p>Your device appears to be offline. ' +
         'You need to be connected to the internet to use this application');
