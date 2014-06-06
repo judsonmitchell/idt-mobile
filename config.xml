@@ -24,7 +24,13 @@
     <preference name="phonegap-version" value="3.4.0" />         
     <preference name="android-targetSdkVersion" value="14" />
 
-
+<!-- this code makes the statusbar text white -->
+<gap:config-file platform="ios" parent="UIViewControllerBasedStatusBarAppearance">
+    <false/>
+</gap:config-file>
+<gap:config-file platform="ios" parent="UIStatusBarStyle">
+    <string>UIStatusBarStyleLightContent</string>
+</gap:config-file>
     <access origin="*"/>
     <icon src="icon.png" />
 
