@@ -122,6 +122,7 @@ function buildNodes(xmlData, id) {
     }
     //Attempt to fix iOS 7 status bar issue
     if(window.device && parseFloat(window.device.version) >= 7){
+        alert('yep');
         $('nav').addClass('fix-iOS');
     }
 }
