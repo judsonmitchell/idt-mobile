@@ -87,5 +87,4 @@
     <gap:splash src="res/splash/drawable-mdpi/android-splash.9.png"  gap:platform="android" gap:density="mdpi"  />
     <gap:splash src="res/splash/drawable-xhdpi/android-splash.9.png"  gap:platform="android" gap:density="xhdpi"  />
     <gap:splash src="res/splash/drawable-xxhdpi/android-splash.9.png"  gap:platform="android" gap:density="xxhdpi"  />
-    <!-- Android -->
 </widget>
