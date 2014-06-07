@@ -10,7 +10,9 @@ document.addEventListener('deviceready', onDeviceReady, false);
 function onDeviceReady(){
     var networkState = navigator.connection.type;
     var states = {};
-    //StatusBar.hide();
+    if (typeof StatusBar !== 'undefined'){
+        StatusBar.hide();
+    }
     if (networkState === 'none'){
         $('.panel-body').html('<h3>You are offline</h3><p>Your device appears to be offline. ' +
         'You need to be connected to the internet to use this application');
