@@ -71,6 +71,8 @@
 
     <!-- Splash -->
 
+    <gap:splash src="splash.png" />
+
     <!-- iOS -->
     <gap:splash src="res/splash/Default.png" gap:platform="ios" width="320" height="480" />
     <gap:splash src="res/splash/Default@2x.png" gap:platform="ios" width="640" height="960" />
@@ -82,10 +84,5 @@
     <gap:splash src="res/splash/Default-Portrait@2x.png" gap:platform="ios" width="1536" height="2048" />
     <gap:splash src="res/splash/Default-Landscape@2x.png" gap:platform="ios" width="2048" height="1536" />
 
-    <!--  Android -->
-    <gap:splash src="res/splash/drawable-hdpi/android-splash.9.png"  gap:platform="android" gap:density="hdpi"  />
-    <gap:splash src="res/splash/drawable-mdpi/android-splash.9.png"  gap:platform="android" gap:density="mdpi"  />
-    <gap:splash src="res/splash/drawable-xhdpi/android-splash.9.png"  gap:platform="android" gap:density="xhdpi"  />
-    <gap:splash src="res/splash/drawable-xxhdpi/android-splash.9.png"  gap:platform="android" gap:density="xxhdpi"  />
 
 </widget>
