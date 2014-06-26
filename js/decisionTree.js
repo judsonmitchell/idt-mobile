@@ -29,11 +29,11 @@ function onDeviceReady(){
 }
 
 //For local testing
-$(document).ready(function () {
-    var branches = [];
-    var options = {};
-    loadData();
-});
+//$(document).ready(function () {
+//    var branches = [];
+//    var options = {};
+//    loadData();
+//});
 
 function loadData() {
 	$.ajax({
