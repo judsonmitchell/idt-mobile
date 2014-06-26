@@ -18,7 +18,7 @@ function onDeviceReady(){
         'You need to be connected to the internet to use this application');
         return;
     } else {
-        //Get rid of any previous sessions 
+        //Get rid of any previous sessions
         if (window.localStorage.getItem('idt-sess-id')){
             window.localStorage.removeItem('idt-sess-id');
         }
@@ -225,8 +225,9 @@ function addReferralListeners(){
 }
 
 function generateReferralManual(zip, distance){
-
-    var url = backendUrl + 'private/referral_mobile.php?zip=' + zip + '&geo_range=' + distance;
+    var sessId = window.localStorage.getItem('idt-sess-id');
+    var url = backendUrl + 'private/referral_mobile.php?zip=' + zip +
+    '&geo_range=' + distance + '&sess_id=' + sessId;
     $('#referral-results').load(url, function (){
         $('#zipCode').val(zip);
         $('#geoRange').val(distance);
