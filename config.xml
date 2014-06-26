@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
     <widget xmlns   = "http://www.w3.org/ns/widgets"
         xmlns:gap   = "http://phonegap.com/ns/1.0"
-        id          = "org.loyolalawtech.lea"
+        id          = "org.jaclouisiana.lea"
         versionCode = "6"
         version     = "1.1.3">
 
@@ -11,8 +11,8 @@
 
     <description>The Louisiana Expungment App - Helps you quickly determine if your are eligible for a criminal record expungment and refers you to attorneys who can help.</description>
 
-    <author href="http://loyolalawtech.org" email="judson@loyolalawtech.org">
-        Judson Mitchell
+    <author href="http://jaclouisiana.org" email="info@JACLouisiana.org">
+        Justice and Accountability Center of Louisiana
     </author>
 
     <gap:plugin name="com.phonegap.plugin.statusbar" version="1.1.0" />
