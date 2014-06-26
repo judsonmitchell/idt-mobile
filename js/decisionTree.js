@@ -211,9 +211,9 @@ function addReferralListeners(){
         if ($(this).hasClass('phone-link')){
             thisIsAPhone = true;
         }
-
+        alert('testing going on'); 
         $.post(backendUrl + 'private/backend.php',{'action':'link_click_mobile','referral_id': refId, 'sess_id': sess, 'user_id':user}, function (data){
-            console.log(data);
+            alert('data');
             if (thisIsAPhone){
                 var strip = url.replace(/[^a-zA-Z\d:]/g, '');
                 window.open(strip, '_system');
